@@ -76,10 +76,11 @@ class PluginManifestTest(unittest.TestCase):
         quickstart = PLUGIN_ROOT / "scripts" / "quickstart-gateway-mock-e2e.sh"
         mock_server = PLUGIN_ROOT / "scripts" / "mock_dify_plugin_server.py"
         architecture = PLUGIN_ROOT / "ARCHITECTURE.md"
+        install_guide = REPO_ROOT / "docs" / "dify-plugin-installation-guide.md"
         workflow = REPO_ROOT / "docs" / "dify-workflow-diagram.md"
         comparison = REPO_ROOT / "docs" / "cross-platform-comparison.md"
 
-        for path in [quickstart, mock_server, architecture, workflow, comparison]:
+        for path in [quickstart, mock_server, architecture, install_guide, workflow, comparison]:
             self.assertTrue(path.is_file(), str(path))
 
         quickstart_text = quickstart.read_text(encoding="utf-8")
@@ -108,6 +109,10 @@ class PluginManifestTest(unittest.TestCase):
         architecture_text = architecture.read_text(encoding="utf-8")
         for expected in ["plugin", "Gateway", "Core", "capture", "recall"]:
             self.assertIn(expected, architecture_text)
+
+        install_guide_text = install_guide.read_text(encoding="utf-8")
+        for expected in ["dify plugin package", "tdai_capture", "tdai_conversation_search", "PluginToolManager"]:
+            self.assertIn(expected, install_guide_text)
 
     def test_llm_descriptions_are_prompt_budget_friendly(self) -> None:
         for tool_yaml_path in (PLUGIN_ROOT / "tools").glob("*.yaml"):

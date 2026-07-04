@@ -56,5 +56,6 @@ Manual setup:
 ## Architecture Docs
 
 - [Dify adapter architecture](ARCHITECTURE.md)
+- Repository guide: `docs/dify-plugin-installation-guide.md`
 - [Dify workflow diagram](../docs/dify-workflow-diagram.md)
 - [Cross-platform adapter comparison](../docs/cross-platform-comparison.md)
