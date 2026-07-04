@@ -60,6 +60,18 @@ class PluginManifestTest(unittest.TestCase):
             self.assertIsNotNone(source_match, relative_tool_path)
             self.assertTrue((PLUGIN_ROOT / source_match.group(1)).is_file(), source_match.group(1))
 
+    def test_manifest_and_tools_reference_existing_icon_asset(self) -> None:
+        icon = "icon.svg"
+        self.assertTrue((PLUGIN_ROOT / "_assets" / icon).is_file())
+
+        manifest = (PLUGIN_ROOT / "manifest.yaml").read_text(encoding="utf-8")
+        provider_yaml = (PLUGIN_ROOT / "provider" / "tdai_memory.yaml").read_text(encoding="utf-8")
+
+        self.assertIn(f"icon: {icon}", manifest)
+        self.assertIn(f"icon: {icon}", provider_yaml)
+        self.assertNotIn("icon: _assets/", manifest)
+        self.assertNotIn("icon: _assets/", provider_yaml)
+
     def test_quickstart_and_architecture_docs_are_present(self) -> None:
         quickstart = PLUGIN_ROOT / "scripts" / "quickstart-gateway-mock-e2e.sh"
         mock_server = PLUGIN_ROOT / "scripts" / "mock_dify_plugin_server.py"

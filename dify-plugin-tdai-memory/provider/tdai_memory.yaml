@@ -7,7 +7,7 @@ identity:
   description:
     en_US: Local long-term memory tools backed by TencentDB Agent Memory Gateway.
     zh_Hans: 基于 TencentDB Agent Memory Gateway 的本地长期记忆工具。
-  icon: _assets/icon.svg
+  icon: icon.svg
   tags:
     - utilities
 credentials_for_provider:
